@@ -1,7 +1,7 @@
 <?php
 
 require_once 'AValidator.php';
-require_once 'Database.php';
+require_once '../Database.php';
 
 class RegValidator extends AValidator
 {
