@@ -29,17 +29,19 @@ function check_captcha($token)
     $resp = json_decode($server_output);
     return $resp->status === "ok";
 }
+
 function validateEmail($request): string|bool
 {
-    if ( filter_var($request, FILTER_VALIDATE_EMAIL) === false) {
+    if (filter_var($request, FILTER_VALIDATE_EMAIL) === false) {
         return "Введен некорректный адрес почты";
     } else {
         return true;
     }
 }
+
 function validatePhone($request): string|bool
 {
-    if ( preg_match('/^[0-9]{10}/', $request) !== 1) {
+    if (preg_match('/^[0-9]{10}/', $request) !== 1) {
         return "Номер должен содержать 10 цифр (без восьмерки)";
     } else {
         return true;
@@ -49,7 +51,7 @@ function validatePhone($request): string|bool
 $requests = new Request([$_REQUEST]);
 $db = Database::getDBO();
 $title = 'Авторизация';
-$content = "authorization2";
+$content = "authorization";
 if (isset($requests->auth)) {
     $token = $_POST['smart-token'];
     if (check_captcha($token)) {
@@ -57,13 +59,12 @@ if (isset($requests->auth)) {
         $phoneOrEmail = $requests->auth_phone_or_email;
         if (!empty($password) && !empty($phoneOrEmail)) {
             $type = (preg_match('/^([0-9])+$/', $phoneOrEmail) === 1) ? 'phone' : 'email';
-            $resultValidation =  match ($type) {
+            $resultValidation = match ($type) {
                 'phone' => validatePhone($phoneOrEmail),
                 'email' => validateEmail($phoneOrEmail),
             };
-            print_r(gettype($resultValidation));
             if ($resultValidation == true) {
-                try{
+                try {
                     $where = '`' . $type . '`=? AND `password`=?';
                     $user_data = $db->getRowByWhere('users', $where, [$phoneOrEmail, $password]);
                     if ($user_data === 'user not found') {

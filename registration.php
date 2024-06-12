@@ -8,7 +8,6 @@ use src\Request;
 
 $requests = new Request([$_REQUEST]);
 $db = Database::getDBO();
-print_r($db);
 $users = $db->getFields('login, phone, email', 'users');
 function getArrayFromUsers(array $users, string $field): array
 {
@@ -53,7 +52,7 @@ if (isset($requests->reg)) {
     } else {
         $_SESSION['errors'][] = 'Все поля должны быть заполнены';
     }
-    if(empty($_SESSION['errors'])) {
+    if (empty($_SESSION['errors'])) {
         try {
             if ($db->insert('users', $fields, $insert_values) == true) {
                 $_SESSION['message'] = 'Регистрация прошла успешно';
