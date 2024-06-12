@@ -9,6 +9,7 @@
     define('DB_PASSWORD', 'password');
     define('DB_NAME', 'testtask');
     $path = ini_get('include_path').';'.'src';
+    //test
     set_include_path($path);
     spl_autoload_register();
 ?>
