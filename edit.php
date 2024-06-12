@@ -2,7 +2,7 @@
 require_once 'src/config.php';
 require_once 'src/Request.php';
 require_once 'src/Database.php';
-require_once 'src/EditValidator.php';
+require_once 'src/validation/EditValidator.php';
 
 use src\Request;
 

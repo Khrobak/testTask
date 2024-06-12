@@ -1,4 +1,4 @@
-<?php if (!isset($_SESSION['message'])) { ?>
+﻿<?php if (!isset($_SESSION['message'])) { ?>
     <h2>Форма редактирования личной информации </h2>
     <form action='' method='post'>
 
@@ -8,7 +8,7 @@
         <p><label>Телефон </label> <input type='tel' name='phone' value="<?= $user['phone'] ?>"/></p>
         <p><label>Пароль </label> <input type='password' name='password'/></p>
         <p><label>Повторите пароль </label> <input type='password' name='password_confirmed'/></p>
-        <input type='submit' name='edit' value='edit'/>
+        <input type='submit' name='edit' value='Изменить'/>
     </form>
     <?php if (!empty($_SESSION['errors'])) { ?>
         <p>

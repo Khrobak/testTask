@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Database.php';
+require_once 'Database.php';
 require_once 'AValidator.php';
 
 class EditValidator extends AValidator

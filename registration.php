@@ -1,8 +1,8 @@
-<?php
+﻿<?php
 require_once 'src/config.php';
 require_once 'src/Request.php';
 require_once 'src/Database.php';
-require_once 'src/RegValidator.php';
+require_once 'src/validation/RegValidator.php';
 
 use src\Request;
 
@@ -25,7 +25,7 @@ if (isset($requests->reg)) {
     if (empty($_SESSION['errors'])) {
         try {
             if ($db->insert('users', $fields, $insert_values) == true) {
-                $_SESSION['message'] = 'Регистрация прошла успешно';
+                $_SESSION['message'] = 'Регистрация прошла успешно. Чтобы изменить данные, необходимо авторизоваться.';
             }
         } catch (PDOException $e) {
             print "Error: " . $e->getMessage();
