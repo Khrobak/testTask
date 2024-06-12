@@ -1,12 +1,12 @@
 <?php
-require_once 'src/Config.php';
+require_once 'src/config.php';
 require_once 'src/Request.php';
 require_once 'src/Database.php';
 
 use src\Request;
 
 define('SMARTCAPTCHA_SERVER_KEY', '****');
-function check_captcha($token)
+function checkCaptcha($token)
 {
     $ch = curl_init();
     $args = http_build_query([
@@ -18,15 +18,15 @@ function check_captcha($token)
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 1);
 
-    $server_output = curl_exec($ch);
-    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $serverOutput = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
-    if ($httpcode !== 200) {
-        echo "Allow access due to an error: code=$httpcode; message=$server_output\n";
+    if ($httpCode !== 200) {
+        echo "Allow access due to an error: code=$httpCode; message=$serverOutput\n";
         return true;
     }
-    $resp = json_decode($server_output);
+    $resp = json_decode($serverOutput);
     return $resp->status === "ok";
 }
 
@@ -54,7 +54,7 @@ $title = 'Авторизация';
 $content = "authorization";
 if (isset($requests->auth)) {
     $token = $_POST['smart-token'];
-    if (check_captcha($token)) {
+    if (checkCaptcha($token)) {
         $password = md5($requests->auth_password);
         $phoneOrEmail = $requests->auth_phone_or_email;
         if (!empty($password) && !empty($phoneOrEmail)) {
@@ -88,7 +88,6 @@ if (isset($requests->auth)) {
         $_SESSION['message'] = 'Вы робот';
     }
 }
-
 
 require_once 'src/exit.php';
 require_once "html/main.php";

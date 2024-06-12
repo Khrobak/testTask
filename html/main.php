@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content_Type" content="text/html; charset=utf-8">
     <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title><?= $title ?></title>
 </head>
 <body>

@@ -6,10 +6,9 @@
         <p><label>Пароль </label> <input type='password' name='auth_password'/></p>
         <p>
         <div
-                style="height: 100px; width: 100px"
                 id="captcha-container"
                 class="smart-captcha"
-                data-sitekey="ysc1_uX0cwUEteA64LVjl6JawYHoWwsXADjIw4WFkurFof62b258d"
+                data-sitekey="*****"
         >
             <input type="hidden" name="smart-token">
         </div>

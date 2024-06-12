@@ -1,7 +1,7 @@
 <?php
 
 namespace src;
-require_once 'Config.php';
+require_once 'config.php';
 
 class Request
 {
@@ -34,7 +34,6 @@ class Request
         if (isset($this->data[$name])) return true;
         return false;
     }
-
 
 
 }
