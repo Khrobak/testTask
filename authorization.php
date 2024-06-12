@@ -5,7 +5,7 @@ require_once 'src/Database.php';
 
 use src\Request;
 
-define('SMARTCAPTCHA_SERVER_KEY', 'ysc2_uX0cwUEteA64LVjl6Jawzgswv0plFeg0lC8Eppit1f2ac6ae');
+define('SMARTCAPTCHA_SERVER_KEY', '****');
 function check_captcha($token)
 {
     $ch = curl_init();
